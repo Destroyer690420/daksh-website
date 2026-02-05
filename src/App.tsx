@@ -240,50 +240,68 @@ const EventDayPage = ({ eventData, onBack }: { eventData: EventPageData, onBack:
                 </div>
             )}
 
-            {/* Post-Reveal Content - Three Column Layout */}
+            {/* Post-Reveal Content */}
             {messageRevealed && (
-                <div className="rose-revealed-layout">
-                    {/* Left - Hello Kitty Couple */}
-                    <div className="rose-revealed-left">
-                        <img
-                            src={eventData.coupleImage}
-                            alt={`${eventData.name} Couple`}
-                            className="rose-couple-image-revealed"
-                        />
+                eventData.layout === 'envelopes' ? (
+                    // 💌 Envelope Grid Layout (Valentine's Day Special)
+                    <div className="flex items-center justify-center w-full min-h-[70vh] z-10 py-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 p-4 w-full max-w-6xl place-items-center">
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="flex justify-center items-center w-full relative group cursor-pointer transition-transform hover:scale-105 duration-300">
+                                    <img
+                                        src="/envelope.png"
+                                        alt={`Envelope ${i}`}
+                                        className="w-full max-w-[350px] h-auto object-contain drop-shadow-2xl"
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
+                ) : (
+                    // Standard Three Column Layout
+                    <div className="rose-revealed-layout">
+                        {/* Left - Hello Kitty Couple */}
+                        <div className="rose-revealed-left">
+                            <img
+                                src={eventData.coupleImage}
+                                alt={`${eventData.name} Couple`}
+                                className="rose-couple-image-revealed"
+                            />
+                        </div>
 
-                    {/* Center - Love Letter */}
-                    <div className="rose-revealed-center">
-                        <div className="love-letter-card">
-                            <div className="love-letter-inner">
-                                <p className="love-letter-greeting">{eventData.letterGreeting}</p>
-                                <p className="love-letter-poem">
-                                    {eventData.letterPoem.map((line, index) => (
-                                        <span key={index}>
-                                            {line}
-                                            {index < eventData.letterPoem.length - 1 && <br />}
-                                        </span>
-                                    ))}
-                                </p>
-                                <p className="love-letter-closing">{eventData.letterClosing}</p>
+                        {/* Center - Love Letter */}
+                        <div className="rose-revealed-center">
+                            <div className="love-letter-card">
+                                <div className="love-letter-inner">
+                                    <p className="love-letter-greeting">{eventData.letterGreeting}</p>
+                                    <p className="love-letter-poem">
+                                        {eventData.letterPoem.map((line, index) => (
+                                            <span key={index}>
+                                                {line}
+                                                {index < eventData.letterPoem.length - 1 && <br />}
+                                            </span>
+                                        ))}
+                                    </p>
+                                    <p className="love-letter-closing">{eventData.letterClosing}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right - Video Player */}
+                        <div className="rose-revealed-right">
+                            <div className="video-container">
+                                <video
+                                    className="rose-day-video"
+                                    controls
+                                    poster={eventData.videoPoster}
+                                >
+                                    <source src={eventData.videoSrc} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                         </div>
                     </div>
-
-                    {/* Right - Video Player */}
-                    <div className="rose-revealed-right">
-                        <div className="video-container">
-                            <video
-                                className="rose-day-video"
-                                controls
-                                poster={eventData.videoPoster}
-                            >
-                                <source src={eventData.videoSrc} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
+                )
             )}
 
             {/* Back Button */}

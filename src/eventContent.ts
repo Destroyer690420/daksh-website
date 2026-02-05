@@ -31,6 +31,7 @@ export type EventPageData = {
     letterGreeting: string;
     letterPoem: string[];
     letterClosing: string;
+    layout?: 'standard' | 'envelopes'; // Default is 'standard'
 }
 
 export const eventPagesData: Record<string, EventPageData> = {
@@ -236,5 +237,36 @@ export const eventPagesData: Record<string, EventPageData> = {
             'Each kiss reminds me I love you.'
         ],
         letterClosing: 'Sealed with a kiss.'
+    },
+
+    // ============================================
+    // 💖 VALENTINE'S DAY (February 14)
+    // ============================================
+    "Valentine's Day": {
+        name: "Valentine's Day",
+        titlePreReveal: "Valentine's Day: My Forever Love",
+        titlePostReveal: "Valentine's Day: A Promise Forever",
+        mainMessage1: 'Today is about celebrating US.',
+        mainMessage2: "You are my heart, my soul, and my forever Valentine!",
+        subMessage: 'Tap to reveal my heart to you.',
+        layout: 'envelopes',
+
+        // 📷 Image: Place your image in /public folder
+        coupleImage: '/valentinescouple.png',
+
+        // 🎬 Video: Place your video in /public folder
+        videoSrc: '/valentines-day-video.mp4',
+        videoPoster: '/valentines-video-poster.jpg',
+
+        // 💌 Love Letter Content
+        letterGreeting: 'My Forever Valentine,',
+        letterPoem: [
+            'From the moment our paths first crossed,',
+            'My heart was found, no longer lost.',
+            'With you, every day feels brand new,',
+            'I love you more than words can do.',
+            'Happy Valentine\'s Day, my love!'
+        ],
+        letterClosing: 'Yours Eternally.'
     }
 };
