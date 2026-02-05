@@ -181,12 +181,120 @@ const ProgressBar = ({ currentDay }: { currentDay: number }) => {
 }
 
 
-const ValentineWeekPage = () => {
-    const handleReveal = (dayName: string) => {
-        // TODO: Navigate to the day's reveal page
-        console.log(`Revealing ${dayName}`)
+// Rose Day Reveal Page Component
+const RoseDayPage = ({ onBack }: { onBack: () => void }) => {
+    const [messageRevealed, setMessageRevealed] = useState(false)
+
+    const handleRevealMessage = () => {
+        setMessageRevealed(true)
     }
 
+    return (
+        <div className="min-h-screen valentine-gradient flex flex-col items-center py-6 px-4 relative overflow-hidden">
+            {/* Header - changes when revealed */}
+            <div className={`text-center mb-4 z-10 transition-all duration-700 ${messageRevealed ? 'rose-revealed-header' : ''}`}>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                    <span className="text-lg">🎀</span>
+                    <span className="text-pink-600 text-xs font-medium tracking-wide">Valentine's Week 2025</span>
+                    <span className="text-lg">🎀</span>
+                </div>
+                <h1 className="valentine-title text-2xl md:text-3xl lg:text-4xl font-bold text-rose-600">
+                    {messageRevealed ? 'Rose Day: A Special Message' : 'Rose Day: Unlocking Our Love Story'}
+                </h1>
+            </div>
+
+            {/* Pre-Reveal Content */}
+            {!messageRevealed && (
+                <div className="flex-1 flex items-center justify-center w-full max-w-4xl px-4">
+                    <div className="rose-day-card">
+                        <div className="rose-day-card-content">
+                            <p className="rose-day-text-main">
+                                Roses speak a thousand words of love.
+                            </p>
+                            <p className="rose-day-text-main">
+                                Here's to the start of our beautiful week together!
+                            </p>
+                            <p className="rose-day-text-sub">
+                                Tap to reveal your special message.
+                            </p>
+                        </div>
+
+                        {/* Rose Couple Image */}
+                        <div className="rose-couple-container">
+                            <img
+                                src="/rosecouple.png"
+                                alt="Rose Couple"
+                                className="rose-couple-image"
+                            />
+                        </div>
+
+                        {/* Reveal Button */}
+                        <button
+                            className="rose-day-reveal-btn"
+                            onClick={handleRevealMessage}
+                        >
+                            Reveal
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* Post-Reveal Content - Three Column Layout */}
+            {messageRevealed && (
+                <div className="rose-revealed-layout">
+                    {/* Left - Hello Kitty Couple */}
+                    <div className="rose-revealed-left">
+                        <img
+                            src="/rosecouple.png"
+                            alt="Rose Couple"
+                            className="rose-couple-image-revealed"
+                        />
+                    </div>
+
+                    {/* Center - Love Letter */}
+                    <div className="rose-revealed-center">
+                        <div className="love-letter-card">
+                            <div className="love-letter-inner">
+                                <p className="love-letter-greeting">My Dearest,</p>
+                                <p className="love-letter-poem">
+                                    Roses are red, my love is true.<br />
+                                    This special day is just for you.<br />
+                                    Every petal speaks my heart, to<br />
+                                    you, my valentine, from the start.
+                                </p>
+                                <p className="love-letter-closing">Love always.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right - Video Player */}
+                    <div className="rose-revealed-right">
+                        <div className="video-container">
+                            <video
+                                className="rose-day-video"
+                                controls
+                                poster="/rose-video-poster.jpg"
+                            >
+                                <source src="/rose-day-video.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Back Button */}
+            <button
+                onClick={onBack}
+                className={`fixed top-4 left-4 z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full text-pink-600 font-medium shadow-lg hover:bg-white transition-all ${messageRevealed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+            >
+                ← Back
+            </button>
+        </div>
+    )
+}
+
+const ValentineWeekPage = ({ onRevealDay }: { onRevealDay: (dayName: string) => void }) => {
     return (
         <div className="min-h-screen valentine-gradient flex flex-col items-center py-6 px-4 relative overflow-hidden">
             {/* Header */}
@@ -210,14 +318,14 @@ const ValentineWeekPage = () => {
                     <DayCard
                         key={day.date}
                         {...day}
-                        onReveal={() => handleReveal(day.name)}
+                        onReveal={() => onRevealDay(day.name)}
                     />
                 ))}
             </div>
 
             {/* Valentine's Day Special Card */}
             <div className="mt-6 z-10 w-full flex justify-center px-4">
-                <ValentinesDayCard onReveal={() => handleReveal("Valentine's Day")} />
+                <ValentinesDayCard onReveal={() => onRevealDay("Valentine's Day")} />
             </div>
         </div>
     )
@@ -421,7 +529,7 @@ const QuestionPage = ({ onYes }: { onYes: () => void }) => {
 }
 
 function App() {
-    const [currentPage, setCurrentPage] = useState<'question' | 'valentineWeek'>('question')
+    const [currentPage, setCurrentPage] = useState<'question' | 'valentineWeek' | 'roseDay'>('question')
     const [showConfetti, setShowConfetti] = useState(false)
 
     const handleYes = () => {
@@ -433,13 +541,29 @@ function App() {
         }, 2000)
     }
 
+    const handleRevealDay = (dayName: string) => {
+        if (dayName === 'Rose Day') {
+            setCurrentPage('roseDay')
+        } else {
+            console.log(`Revealing ${dayName}`)
+        }
+    }
+
+    const handleBackToWeek = () => {
+        setCurrentPage('valentineWeek')
+    }
+
     return (
         <>
             {showConfetti && <Confetti />}
-            {currentPage === 'question' ? (
+            {currentPage === 'question' && (
                 <QuestionPage onYes={handleYes} />
-            ) : (
-                <ValentineWeekPage />
+            )}
+            {currentPage === 'valentineWeek' && (
+                <ValentineWeekPage onRevealDay={handleRevealDay} />
+            )}
+            {currentPage === 'roseDay' && (
+                <RoseDayPage onBack={handleBackToWeek} />
             )}
         </>
     )
