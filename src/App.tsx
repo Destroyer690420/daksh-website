@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback } from 'react'
-import { Heart } from 'lucide-react'
-import { eventPagesData, EventPageData } from './eventContent'
+import { useState, useRef, useCallback, useEffect } from 'react'
+import { Heart, ChevronRight, ChevronLeft } from 'lucide-react'
+import { eventPagesData, EventPageData, valentinesReasons, valentinesPromises, valentinesLetter } from './eventContent'
 
 // ============================================
 // DEV MODE TOGGLE
@@ -182,12 +182,340 @@ const ProgressBar = ({ currentDay }: { currentDay: number }) => {
 }
 
 
+// ============================================
+// 💕 14 REASONS WHY I LOVE YOU - Page Component
+// ============================================
+const ReasonsPage = ({ onBack }: { onBack: () => void }) => {
+    const [currentPage, setCurrentPage] = useState(0) // 0 = reasons 1-7, 1 = reasons 8-14
+
+    const reasons = valentinesReasons.reasons
+    const currentReasons = currentPage === 0
+        ? reasons.slice(0, 7)
+        : reasons.slice(7, 14)
+
+    const reasonNumbers = currentPage === 0
+        ? ['01', '02', '03', '04', '05', '06', '07']
+        : ['08', '09', '10', '11', '12', '13', '14']
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage === 0 ? 1 : 0)
+    }
+
+    return (
+        <div className="reasons-page">
+            {/* Back Button */}
+            <button
+                onClick={onBack}
+                className="reasons-back-btn"
+            >
+                ← Back
+            </button>
+
+            {/* Title */}
+            <div className="reasons-title">
+                <h1><span className="reasons-sparkle">✦</span> 14 reasons why I Love You</h1>
+                <p className="reasons-subtitle">& still not enough</p>
+            </div>
+
+            {/* Main Content - 3 Column Grid Layout */}
+            <div className="reasons-grid">
+                {/* Row 1: 02, 01, 03 */}
+                <div className="reason-cell">
+                    <span className="reason-number">{reasonNumbers[1]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[1]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell reason-cell-wide">
+                    <span className="reason-number">{reasonNumbers[0]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[0]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell">
+                    <span className="reason-number">{reasonNumbers[2]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[2]}</span>
+                    </div>
+                </div>
+
+                {/* Row 2: 04, Video, 05 */}
+                <div className="reason-cell">
+                    <span className="reason-number">{reasonNumbers[3]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[3]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell reason-cell-video">
+                    <img
+                        src="/Aspect-ratio-16x9.svg.png"
+                        alt="Love Illustration"
+                        className="reasons-media"
+                    />
+                </div>
+                <div className="reason-cell">
+                    <span className="reason-number">{reasonNumbers[4]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[4]}</span>
+                    </div>
+                </div>
+
+                {/* Row 3: 06, 07 */}
+                <div className="reason-cell">
+                    <span className="reason-number">{reasonNumbers[5]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[5]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell">
+                    <span className="reason-number">{reasonNumbers[6]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentReasons[6]}</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Next/Prev Button */}
+            <button className="reasons-nav-btn" onClick={handleNextPage}>
+                {currentPage === 0 ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
+            </button>
+        </div>
+    )
+}
+
+
+// ============================================
+// 💕 14 PROMISES I CAN MAKE - Page Component
+// ============================================
+const PromisesPage = ({ onBack }: { onBack: () => void }) => {
+    const [currentPage, setCurrentPage] = useState(0) // 0 = promises 1-7, 1 = promises 8-14
+
+    const promises = valentinesPromises.reasons
+    const currentPromises = currentPage === 0
+        ? promises.slice(0, 7)
+        : promises.slice(7, 14)
+
+    const promiseNumbers = currentPage === 0
+        ? ['01', '02', '03', '04', '05', '06', '07']
+        : ['08', '09', '10', '11', '12', '13', '14']
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage === 0 ? 1 : 0)
+    }
+
+    return (
+        <div className="reasons-page">
+            {/* Back Button */}
+            <button
+                onClick={onBack}
+                className="reasons-back-btn"
+            >
+                ← Back
+            </button>
+
+            {/* Title */}
+            <div className="reasons-title">
+                <h1><span className="reasons-sparkle">✦</span> 14 promises I can make</h1>
+                <p className="reasons-subtitle">& I'll keep them all</p>
+            </div>
+
+            {/* Main Content - 3 Column Grid Layout */}
+            <div className="reasons-grid">
+                {/* Row 1: 02, 01, 03 */}
+                <div className="reason-cell">
+                    <span className="reason-number">{promiseNumbers[1]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[1]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell reason-cell-wide">
+                    <span className="reason-number">{promiseNumbers[0]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[0]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell">
+                    <span className="reason-number">{promiseNumbers[2]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[2]}</span>
+                    </div>
+                </div>
+
+                {/* Row 2: 04, Video, 05 */}
+                <div className="reason-cell">
+                    <span className="reason-number">{promiseNumbers[3]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[3]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell reason-cell-video">
+                    <img
+                        src="/Aspect-ratio-16x9.svg.png"
+                        alt="Promise Illustration"
+                        className="reasons-media"
+                    />
+                </div>
+                <div className="reason-cell">
+                    <span className="reason-number">{promiseNumbers[4]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[4]}</span>
+                    </div>
+                </div>
+
+                {/* Row 3: 06, 07 */}
+                <div className="reason-cell">
+                    <span className="reason-number">{promiseNumbers[5]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[5]}</span>
+                    </div>
+                </div>
+                <div className="reason-cell">
+                    <span className="reason-number">{promiseNumbers[6]}</span>
+                    <div className="reason-bar">
+                        <span className="reason-text">{currentPromises[6]}</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Next/Prev Button */}
+            <button className="reasons-nav-btn" onClick={handleNextPage}>
+                {currentPage === 0 ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
+            </button>
+        </div>
+    )
+}
+
+
+
+// ============================================
+// 💌 THE LETTER - Page Component
+// ============================================
+const LetterPage = ({ onBack }: { onBack: () => void }) => {
+    return (
+        <div className="letter-page-container">
+            {/* Back Button */}
+            <button
+                onClick={onBack}
+                className="reasons-back-btn"
+            >
+                ← Back
+            </button>
+
+            <div className="letter-wrapper">
+                <div className="letter-content">
+                    {valentinesLetter.split('\n').map((paragraph, index) => (
+                        <p key={index} className="letter-paragraph">
+                            {paragraph}
+                            <br />
+                        </p>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+// ============================================
+// 💍 MARRY ME - Page Component
+// ============================================
+const MarryMePage = ({ onBack }: { onBack: () => void }) => {
+    const [interactionStage, setInteractionStage] = useState(0)
+
+    const headings = [
+        "Choose an option",
+        "Do it properly",
+        "Do it with a little more LOVE baby"
+    ]
+
+    const handleClick = () => {
+        if (interactionStage < 3) {
+            setInteractionStage(interactionStage + 1)
+        }
+    }
+
+    if (interactionStage === 3) {
+        return (
+            <div className="marry-me-video-overlay">
+                <video
+                    src="/reasons-video.mp4"
+                    className="marry-me-video"
+                    autoPlay
+                    controls
+                    playsInline
+                />
+                <button
+                    onClick={onBack}
+                    className="marry-me-video-close-btn"
+                >
+                    ×
+                </button>
+            </div>
+        )
+    }
+
+    return (
+        <div className="marry-me-page-container">
+            {/* Back Button */}
+            <button
+                onClick={(e) => {
+                    e.stopPropagation()
+                    onBack()
+                }}
+                className="reasons-back-btn"
+            >
+                ← Back
+            </button>
+
+            <div className="marry-me-content" onClick={handleClick}>
+                <h1 className="marry-me-heading" key={interactionStage}>{headings[interactionStage]}</h1>
+                <div className="marry-me-image-wrapper">
+                    <img
+                        src="/marry_me.png"
+                        alt="Marry Me"
+                        className="marry-me-image"
+                    />
+                </div>
+            </div>
+        </div>
+    )
+}
+
 // Generic Event Day Reveal Page Component
 const EventDayPage = ({ eventData, onBack }: { eventData: EventPageData, onBack: () => void }) => {
     const [messageRevealed, setMessageRevealed] = useState(false)
+    const [activeEnvelope, setActiveEnvelope] = useState<number | null>(null)
 
     const handleRevealMessage = () => {
         setMessageRevealed(true)
+    }
+
+    const handleEnvelopeClick = (envelopeNumber: number) => {
+        setActiveEnvelope(envelopeNumber)
+    }
+
+    const handleBackFromEnvelope = () => {
+        setActiveEnvelope(null)
+    }
+
+    // If envelope 1 is active, show the ReasonsPage
+    if (activeEnvelope === 1) {
+        return <ReasonsPage onBack={handleBackFromEnvelope} />
+    }
+
+    // If envelope 2 is active, show the PromisesPage
+    if (activeEnvelope === 2) {
+        return <PromisesPage onBack={handleBackFromEnvelope} />
+    }
+
+    // If envelope 3 is active, show the LetterPage
+    if (activeEnvelope === 3) {
+        return <LetterPage onBack={handleBackFromEnvelope} />
+    }
+
+    // If envelope 4 is active, show the MarryMePage
+    if (activeEnvelope === 4) {
+        return <MarryMePage onBack={handleBackFromEnvelope} />
     }
 
     return (
@@ -247,7 +575,11 @@ const EventDayPage = ({ eventData, onBack }: { eventData: EventPageData, onBack:
                     <div className="flex items-center justify-center w-full min-h-[70vh] z-10 py-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 p-4 w-full max-w-6xl place-items-center">
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="flex justify-center items-center w-full relative group cursor-pointer transition-transform hover:scale-105 duration-300">
+                                <div
+                                    key={i}
+                                    className="flex justify-center items-center w-full relative group cursor-pointer transition-transform hover:scale-105 duration-300"
+                                    onClick={() => handleEnvelopeClick(i)}
+                                >
                                     <img
                                         src="/envelope.png"
                                         alt={`Envelope ${i}`}
@@ -292,7 +624,9 @@ const EventDayPage = ({ eventData, onBack }: { eventData: EventPageData, onBack:
                             <div className="video-container">
                                 <video
                                     className="rose-day-video"
-                                    controls
+                                    autoPlay
+                                    loop
+                                    playsInline
                                     poster={eventData.videoPoster}
                                 >
                                     <source src={eventData.videoSrc} type="video/mp4" />
@@ -307,7 +641,7 @@ const EventDayPage = ({ eventData, onBack }: { eventData: EventPageData, onBack:
             {/* Back Button */}
             <button
                 onClick={onBack}
-                className={`fixed top-4 left-4 z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full text-pink-600 font-medium shadow-lg hover:bg-white transition-all ${messageRevealed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                className="fixed top-4 left-4 z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full text-pink-600 font-medium shadow-lg hover:bg-white transition-all opacity-100"
             >
                 ← Back
             </button>
@@ -553,9 +887,26 @@ const QuestionPage = ({ onYes }: { onYes: () => void }) => {
 function App() {
     const [currentPage, setCurrentPage] = useState<string>('question')
     const [showConfetti, setShowConfetti] = useState(false)
+    const audioRef = useRef<HTMLAudioElement | null>(null)
+
+    useEffect(() => {
+        // Initialize audio
+        audioRef.current = new Audio('/bemybaby.webm')
+        audioRef.current.loop = true
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause()
+                audioRef.current = null
+            }
+        }
+    }, [])
 
     const handleYes = () => {
         setShowConfetti(true)
+        // Start playing the song
+        audioRef.current?.play().catch(err => console.log("Audio playback failed:", err))
+
         // Show confetti for a moment, then transition to Valentine's Week page
         setTimeout(() => {
             setCurrentPage('valentineWeek')
@@ -567,6 +918,8 @@ function App() {
         // Check if it's one of the supported event days (not Valentine's Day)
         if (eventPagesData[dayName]) {
             setCurrentPage(dayName)
+            // Stop audio when entering any event page
+            audioRef.current?.pause()
         } else if (dayName === "Valentine's Day") {
             // Valentine's Day has its own special handling (to be implemented)
             console.log("Valentine's Day page - coming soon!")
@@ -575,6 +928,8 @@ function App() {
 
     const handleBackToWeek = () => {
         setCurrentPage('valentineWeek')
+        // Resume audio when returning to the second page (Valentine's Week)
+        audioRef.current?.play().catch(err => console.log("Audio playback failed:", err))
     }
 
     // Get event data if we're on an event page

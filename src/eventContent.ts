@@ -51,7 +51,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/rosecouple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/rose-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/rose-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -80,7 +80,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/propose day couple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/propose-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/propose-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -109,7 +109,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/chocolate day couple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/chocolate-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/chocolate-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -138,7 +138,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/teddy day couple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/teddy-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/teddy-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -167,7 +167,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/promise day couple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/promise-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/promise-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -196,7 +196,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/hug day couple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/hug-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/hug-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -225,7 +225,7 @@ export const eventPagesData: Record<string, EventPageData> = {
         coupleImage: '/kiss day couple.png',
 
         // 🎬 Video: Place your video in /public folder
-        videoSrc: '/kiss-day-video.mp4',
+        videoSrc: '/reasons-video.mp4',
         videoPoster: '/kiss-video-poster.jpg',
 
         // 💌 Love Letter Content
@@ -270,3 +270,91 @@ export const eventPagesData: Record<string, EventPageData> = {
         letterClosing: 'Yours Eternally.'
     }
 };
+
+// ============================================
+// 💕 VALENTINE'S DAY - 14 REASONS WHY I LOVE YOU
+// ============================================
+// 
+// Edit these reasons to personalize them!
+// 
+
+export type ReasonsData = {
+    reasons: string[];
+    videoSrc: string;
+}
+
+export const valentinesReasons: ReasonsData = {
+    reasons: [
+        // Page 1 (Reasons 1-7)
+        "You notice the details no one else do",
+        "You love me for who I am",
+        "You are my safe space",
+        "Your humour is unmatched",
+        "Your actions are louder than words",
+        "You believe me and give me confidence",
+        "You brighten my days",
+        // Page 2 (Reasons 8-14)
+        "You make every moment special",
+        "Your smile lights up my world",
+        "You understand me like no one else",
+        "You support all my dreams",
+        "You make me a better person",
+        "You are my best friend",
+        "You are my forever and always"
+    ],
+    videoSrc: '/reasons-video.mp4'
+};
+
+// ============================================
+// 💕 VALENTINE'S DAY - 14 PROMISES I CAN MAKE
+// ============================================
+// 
+// Edit these promises to personalize them!
+// 
+
+export const valentinesPromises: ReasonsData = {
+    reasons: [
+        // Page 1 (Promises 1-7)
+        "I promise to always be there for you",
+        "I promise to love you unconditionally",
+        "I promise to support your dreams",
+        "I promise to make you laugh every day",
+        "I promise to hold your hand through storms",
+        "I promise to be your biggest cheerleader",
+        "I promise to cherish every moment with you",
+        // Page 2 (Promises 8-14)
+        "I promise to listen with my whole heart",
+        "I promise to grow old with you",
+        "I promise to never stop surprising you",
+        "I promise to be honest and true",
+        "I promise to build our future together",
+        "I promise to love you more each day",
+        "I promise to be yours forever and always"
+    ],
+    videoSrc: '/promises-video.mp4'
+};
+
+
+// ============================================
+// 💌 VALENTINE'S DAY - THE LETTER (ENVELOPE 3)
+// ============================================
+
+export const valentinesLetter = `My Dearest Love,
+
+As I sit down to write this, I find myself overwhelmed by just how much you mean to me. It’s funny how life works—how one person can walk into your world and suddenly become the center of it. Before you, I thought I understood what love was, but you have redefined it in the most beautiful way possible.
+
+Do you remember how we started? The little moments, the shy glances, the conversations that flowed so effortlessly? Looking back, I realize that every single one of those moments was a stepping stone leading me to this profound realization: you are my person. You are the one my soul has been searching for, even before I knew I was looking.
+
+There are so many things I adore about you. I love the way your eyes light up when you talk about something you’re passionate about. I love your kindness, the way you treat others with such grace and empathy. I love your laugh—it is, without a doubt, my favorite sound in the entire world. It has the power to turn my darkest days into bright, sunny mornings.
+
+But more than just the things I see, I love who you make me when I am with you. You challenge me to be better, to dream bigger, and to love harder. You are my safe haven, my quiet place in a chaotic world. When I am with you, I feel a sense of peace that I can’t find anywhere else. You have seen me at my best and my worst, and yet, you love me all the same. That kind of unconditional acceptance is a gift I will treasure forever.
+
+I want you to know that I am committed to us. I promise to stand by your side through every high and every low. I promise to be your biggest cheerleader when you succeed and your soft place to land when you fall. I promise to keep dating you, to keep trying, to never let the spark that ignited us fade away. I want to build a life with you—a life filled with adventure, laughter, and an abundance of love.
+
+As we celebrate this Valentine’s Day, I want you to look at how far we’ve come and know that this is just the beginning. I see a future with you that is so bright it exhilarates me. I see us growing old together, our hands still intertwined, our hearts still beating in rhythm.
+
+Thank you for choosing me, for loving me, and for being the incredible person that you are. You are my heart, my soul, and my forever Valentine.
+
+With all my love, forever and always,
+
+Your Love`;

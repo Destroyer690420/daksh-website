@@ -468,6 +468,7 @@ button {
   border: 3px solid #ec4899;
   width: 70%;
   max-width: 700px;
+  aspect-ratio: 23/9;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -492,7 +493,7 @@ button {
 
 .valentines-card-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -948,34 +949,24 @@ button {
 }
 
 .video-container {
-  width: auto;
-  height: 85%;
-  aspect-ratio: 9 / 16;
-  border-radius: 32px;
-  /* Smoother corners */
+  width: 60%;
+  height: 100%;
+
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
   background: #000;
-  /* Elegant dark border */
-  border: 8px solid #1f2937;
+  border: 4px solid #fff;
   position: relative;
 }
 
-/* Add a subtle highlight to video frame like a phone */
-.video-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-  pointer-events: none;
-  z-index: 10;
-}
+/* Removed phone highlight pseudo-element */
 
 .rose-day-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Fill container, no black bars */
 }
 
 @keyframes fadeIn {
@@ -1144,4 +1135,505 @@ button {
     width: 90%;
     /* Larger video on mobile */
   }
+}
+
+/* ============================================
+   14 REASONS WHY I LOVE YOU - Page Styles (3-Column Grid)
+   ============================================ */
+
+.reasons-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdf6f0 0%, #fef3e8 50%, #fdf6f0 100%);
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.reasons-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: #c47a7a;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reasons-back-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+.reasons-title {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.reasons-sparkle {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #8b0000;
+  margin-right: 8px;
+  animation: sparkle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes sparkle-pulse {
+
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.reasons-title h1 {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 3.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.reasons-subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  color: #888;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* 3-Column Grid Layout */
+.reasons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 25px 100px;
+  max-width: 1300px;
+  width: 100%;
+  align-items: start;
+}
+
+.reason-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.reason-cell-video {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  grid-row: span 2;
+}
+
+
+.reason-number {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.reason-bar {
+  background: linear-gradient(90deg, #b85c5c 0%, #a04848 100%);
+  padding: 10px 20px;
+  border-radius: 2px;
+  box-shadow: 0 4px 12px rgba(180, 92, 92, 0.25);
+  width: 100%;
+  max-width: 260px;
+}
+
+/* Wider bar for reason #1 (center column, first row) */
+.reason-cell-wide .reason-bar {
+  max-width: 320px;
+}
+
+.reason-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.reasons-media {
+  margin-top: 50px;
+  width: 320px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 3px solid #2a2a2a;
+}
+
+.reasons-nav-btn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8a0a0 0%, #d98888 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(217, 136, 136, 0.4);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.reasons-nav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(217, 136, 136, 0.5);
+}
+
+/* Responsive styles for Reasons Page */
+@media (max-width: 900px) {
+  .reasons-page {
+    padding: 20px;
+  }
+
+  .reasons-grid {
+    gap: 20px 25px;
+  }
+
+  .reason-number {
+    font-size: 3.2rem;
+  }
+
+  .reason-bar {
+    max-width: 220px;
+    padding: 8px 16px;
+  }
+
+  .reason-text {
+    font-size: 1rem;
+  }
+
+  .reasons-media {
+    width: 160px;
+    height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .reasons-title h1 {
+    font-size: 2.8rem;
+  }
+
+  .reasons-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .reasons-grid {
+    gap: 15px 15px;
+  }
+
+  .reason-number {
+    font-size: 2.8rem;
+  }
+
+  .reason-bar {
+    max-width: 180px;
+    padding: 6px 12px;
+  }
+
+  .reason-text {
+    font-size: 0.9rem;
+  }
+
+  .reasons-media {
+    width: 130px;
+    height: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .reasons-page {
+    padding: 15px 10px;
+  }
+
+  .reasons-title {
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+
+  .reasons-title h1 {
+    font-size: 2.2rem;
+  }
+
+  .reasons-sparkle {
+    font-size: 1rem;
+  }
+
+  .reasons-grid {
+    gap: 12px 8px;
+  }
+
+  .reason-number {
+    font-size: 2.2rem;
+    margin-bottom: 4px;
+  }
+
+  .reason-bar {
+    max-width: 110px;
+    padding: 5px 10px;
+  }
+
+  .reason-text {
+    font-size: 0.75rem;
+  }
+
+  .reasons-media {
+    width: 100px;
+    height: auto;
+  }
+
+  .reasons-nav-btn {
+    width: 45px;
+    height: 45px;
+    right: 15px;
+    bottom: 15px;
+  }
+}
+
+/* ============================================
+   Letter Page Styles
+   ============================================ */
+
+.letter-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdf6f0 0%, #fff0f5 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.letter-wrapper {
+  background: #fff;
+  width: 100%;
+  max-width: 800px;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.05),
+    /* Paper edge */
+    0 20px 50px rgba(236, 72, 153, 0.15),
+    /* Glow */
+    inset 0 0 100px rgba(255, 240, 245, 0.5);
+  /* Inner texture */
+  position: relative;
+  border: 1px solid #fce7f3;
+}
+
+/* Paper Texture Effect */
+.letter-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.letter-content {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  text-align: left;
+}
+
+.letter-paragraph {
+  margin-bottom: 24px;
+  text-indent: 40px;
+}
+
+.letter-paragraph:first-child {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #be185d;
+  text-indent: 0;
+  margin-bottom: 40px;
+}
+
+.letter-paragraph:last-child {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #be185d;
+  text-align: right;
+  margin-top: 40px;
+  margin-bottom: 0;
+  text-indent: 0;
+}
+
+/* Responsive Letter Styles */
+@media (max-width: 768px) {
+  .letter-wrapper {
+    padding: 30px;
+  }
+
+  .letter-content {
+    font-size: 1.3rem;
+  }
+
+  .letter-paragraph:first-child,
+  .letter-paragraph:last-child {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   Marry Me Page Styles
+   ============================================ */
+
+.marry-me-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f5 0%, #fce7f3 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.marry-me-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+}
+
+.marry-me-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #be185d;
+  margin-bottom: 40px;
+  text-transform: lowercase;
+  animation: fadeIn 0.5s ease-out;
+  text-shadow: 2px 2px 4px rgba(236, 72, 153, 0.2);
+}
+
+.marry-me-image-wrapper {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.marry-me-image-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.marry-me-image {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(236, 72, 153, 0.25);
+  border: 4px solid #fff;
+}
+
+/* Responsive Styles for Marry Me Page */
+@media (max-width: 768px) {
+  .marry-me-heading {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .marry-me-image {
+    max-width: 320px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Marry Me Full Screen Video */
+.marry-me-video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-out;
+}
+
+.marry-me-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.marry-me-video-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  z-index: 101;
+}
+
+.marry-me-video-close-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(90deg);
 }
