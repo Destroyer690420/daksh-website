@@ -7,7 +7,7 @@ import { eventPagesData, EventPageData, valentinesReasons, valentinesPromises, v
 // Set to true to unlock all cards for development
 // Set to false for production (time-based locks)
 // ============================================
-const DEV_MODE = true
+const DEV_MODE = false
 
 // Valentine's Week days data with images and unlock dates
 const valentineDays = [
@@ -45,6 +45,24 @@ const getDaysUntilUnlock = (unlockDay: number): number => {
     const diffTime = unlockDate.getTime() - now.getTime()
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
     return Math.max(0, diffDays)
+}
+
+// Helper function to get current Valentine's Week day (1-7, or 8 for Valentine's Day)
+const getCurrentValentineDay = (): number => {
+    const now = new Date()
+    const currentMonth = now.getMonth() + 1 // 0-indexed
+    const currentDay = now.getDate()
+
+    // Valentine's Week starts Feb 7 (Day 1) and ends Feb 14 (Day 8)
+    if (currentMonth === 2 && currentDay >= 7 && currentDay <= 14) {
+        return currentDay - 6 // Feb 7 = 1, Feb 8 = 2, ..., Feb 14 = 8
+    }
+    // Before Feb 7, return 0
+    if (currentMonth < 2 || (currentMonth === 2 && currentDay < 7)) {
+        return 0
+    }
+    // After Feb 14, return 8 (completed)
+    return 8
 }
 
 // Day Card Component - Image with text overlay, lock state, and reveal button
@@ -524,7 +542,7 @@ const EventDayPage = ({ eventData, onBack }: { eventData: EventPageData, onBack:
             <div className={`text-center mb-4 z-10 transition-all duration-700 ${messageRevealed ? 'rose-revealed-header' : ''}`}>
                 <div className="flex items-center justify-center gap-2 mb-1">
                     <span className="text-lg">🎀</span>
-                    <span className="text-pink-600 text-xs font-medium tracking-wide">Valentine's Week 2025</span>
+                    <span className="text-pink-600 text-xs font-medium tracking-wide">Valentine's Week 2026</span>
                     <span className="text-lg">🎀</span>
                 </div>
                 <h1 className="valentine-title text-2xl md:text-3xl lg:text-4xl font-bold text-rose-600">
@@ -657,7 +675,7 @@ const ValentineWeekPage = ({ onRevealDay }: { onRevealDay: (dayName: string) => 
             <div className="text-center mb-6 z-10">
                 <div className="flex items-center justify-center gap-2 mb-2">
                     <span className="text-pink-500 text-2xl">🎀</span>
-                    <span className="text-pink-600 text-sm font-medium tracking-wide">Valentine's Week 2025</span>
+                    <span className="text-pink-600 text-sm font-medium tracking-wide">Valentine's Week 2026</span>
                     <span className="text-pink-500 text-2xl">🎀</span>
                 </div>
                 <h1 className="valentine-title text-2xl md:text-3xl lg:text-4xl font-bold text-pink-700 mb-4">
@@ -665,7 +683,7 @@ const ValentineWeekPage = ({ onRevealDay }: { onRevealDay: (dayName: string) => 
                 </h1>
 
                 {/* Progress Bar */}
-                <ProgressBar currentDay={1} />
+                <ProgressBar currentDay={getCurrentValentineDay()} />
             </div>
 
             {/* Day Cards Grid */}
